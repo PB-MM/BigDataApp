@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ver Registros - Gestor de BigData</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous" />
+
+    <!-- DataTables CSS (opcional) -->
+    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
+          rel="stylesheet" />
+
+    <!-- Tu CSS de gestor -->
+    <link href="{{ url_for('static', filename='css/gestor.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">BigData-MiProyecto <b>[{{ usuario }}]</b></h2>
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gestion_proyecto">Gestionar Mongo Db</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/elasticAdmin">Gestionar Elastic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Salir</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">
+                        Registros de la colección: {{ collection_name }}
+                    </h3>
+                    <a href="{{ url_for('gestion_proyecto', database=database) }}"
+                       class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Volver a colecciones
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="recordsTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                {% if records and records|length > 0 %}
+                                {% for key in records[0].keys() %}
+                                {% if key != '_id' %}
+                                <th>{{ key }}</th>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                <th>Sin datos</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in records %}
+                            <tr>
+                                {% for key, value in record.items() %}
+                                {% if key != '_id' %}
+                                <td>
+                                    {# Si la columna es "productos" o "material_prestado" y no está vacía #}
+                                    {% if key in ['productos', 'material_prestado'] %}
+                                    {% if value is iterable and value|length > 0 %}
+                                    {% if key == 'productos' %}
+                                    <button class="btn-toggle btn btn-success btn-sm"
+                                            onclick="toggleProductos(this)">
+                                        Ver productos
+                                    </button>
+                                    <div class="productos-detalle mt-2" style="display: none;">
+                                        <table class="table table-bordered table-sm table-light mb-0">
+                                            <thead class="table-success">
+                                                <tr>
+                                                    <th>Código</th>
+                                                    <th>Total</th>
+                                                    <th>IVA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for prod in value %}
+                                                <tr>
+                                                    <td>{{ prod['codigo'] }}</td>
+                                                    <td>{{ prod['total'] }}</td>
+                                                    <td>{{ prod['IVA'] }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% elif key == 'material_prestado' %}
+                                    <button class="btn-toggle btn btn-primary btn-sm"
+                                            onclick="toggleProductos(this)">
+                                        Ver material
+                                    </button>
+                                    <div class="productos-detalle mt-2" style="display: none;">
+                                        <table class="table table-bordered table-sm table-light mb-0">
+                                            <thead class="table-info">
+                                                <tr>
+                                                    <th>Código</th>
+                                                    <th>Formato</th>
+                                                    <th>Tipo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for mat in value %}
+                                                <tr>
+                                                    <td>{{ mat['codigo'] }}</td>
+                                                    <td>{{ mat['formato'] }}</td>
+                                                    <td>{{ mat['tipo'] }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% elif value is mapping or (value is iterable and value is not string) %}
+                                    <pre>{{ value | tojson(indent=2) }}</pre>
+                                    {% else %}
+                                    {{ value }}
+                                    {% endif %}
+                                </td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery, Bootstrap JS y DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        // Función para alternar la visibilidad de la tabla de detalle (productos/material)
+        function toggleProductos(button) {
+            const container = button.nextElementSibling;
+            const isVisible = container.style.display === 'block';
+            container.style.display = isVisible ? 'none' : 'block';
+
+            if (button.innerText.includes('productos')) {
+                button.innerText = isVisible ? 'Ver productos' : 'Ocultar productos';
+            } else {
+                button.innerText = isVisible ? 'Ver material' : 'Ocultar material';
+            }
+        }
+
+        $(document).ready(function () {
+            // Solo se inicializa DataTable para paginación y búsqueda del contenido ya renderizado
+            $('#recordsTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
+                },
+                pageLength: 25,
+                lengthMenu: [[25, 50, 100, -1], [25, 50, 100, "Todos"]],
+                ordering: true
+            });
+        });
+    </script>
+</body>
+</html>

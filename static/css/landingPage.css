@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* 2) Variables CSS */
+:root {
+    --color-lila: #805AD5; /* Morado medio (color primario) */
+    --color-lila-claro: #B794F4; /* Lila claro para hover/acentos */
+    --color-morado-oscuro: #553C9A; /* Morado oscuro para títulos/textos importantes */
+    --color-negro: #2D3748; /* Negro muy oscuro (texto general) */
+    --color-blanco: #FFFFFF; /* Blanco puro (texto en botones oscuros) */
+    --color-gris-fondo: #E5E7EB; /* Gris claro-oscuro para fondo general */
+    --color-gris-card: #FFFFFF; /* Fondo de las “cards” (blanco puro) */
+    --color-gris-oscuro: #D1D5DB; /* Gris medio para bordes y separadores */
+    --font-principal: 'Poppins', sans-serif;
+}
+
+/* 3) Reset mínimo y tipografía global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: var(--font-principal);
+    background-color: var(--color-gris-fondo);
+    color: var(--color-negro);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* 4) Fondo suave en degradado para mayor contraste */
+body {
+    background: linear-gradient(120deg, var(--color-gris-fondo) 0%, var(--color-blanco) 100%);
+}
+
+/* 5) Cabecera de la landing y buscador */
+.header {
+    background-color: var(--color-gris-card);
+    padding: 1.5rem 0;
+    border-bottom: 2px solid var(--color-lila);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+    .header h1,
+    .header h2,
+    .header h3 {
+        color: var(--color-morado-oscuro);
+        font-weight: 600;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .header h2 {
+        font-size: 1.75rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .header nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0.5rem;
+    }
+
+        .header nav a {
+            font-family: var(--font-principal);
+            font-weight: 500;
+            color: var(--color-morado-oscuro);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            transition: color 0.2s ease-in-out;
+        }
+
+            .header nav a:hover {
+                color: var(--color-lila-claro);
+            }
+
+/* 6) Secciones generales de la landing */
+.section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: var(--color-gris-card);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+    .section h2 {
+        font-size: 1.75rem;
+        color: var(--color-morado-oscuro);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+/* 7) Hero / Banner */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--color-lila);
+    color: var(--color-blanco);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+
+/* 8) Estilos para “cards” */
+.card {
+    background-color: var(--color-gris-card);
+    border: 1px solid var(--color-gris-oscuro);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+    .card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: var(--color-morado-oscuro);
+        font-weight: 600;
+    }
+
+    .card p {
+        font-size: 1rem;
+        color: var(--color-negro);
+        line-height: 1.5;
+    }
+
+/* 9) Formularios e inputs */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-negro);
+    background-color: var(--color-blanco);
+    color: var(--color-negro);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: var(--font-principal);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: var(--color-morado-oscuro);
+        box-shadow: 0 0 0 4px rgba(85, 60, 154, 0.15);
+        background-color: var(--color-blanco);
+    }
+
+/* 10) Botones con estilo “marketero” */
+/* Botón primario */
+.btn {
+    font-family: var(--font-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0.75rem 1.75rem;
+    min-width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-blanco);
+    background: linear-gradient(135deg, var(--color-morado-oscuro) 0%, var(--color-lila) 100%);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+    .btn:hover,
+    .btn:focus {
+        background-color: var(--color-morado-oscuro);
+        color: var(--color-blanco);
+        transform: translateY(-1px);
+        outline: none;
+    }
+
+    .btn:disabled,
+    .btn[disabled] {
+        background-color: #A0AEC0; /* gris medio-oscuro */
+        color: #EDF2F7; /* gris muy claro */
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+/* Botón secundario */
+.btn-secondary {
+    font-family: var(--font-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0.75rem 1.75rem;
+    min-width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-morado-oscuro);
+    background-color: transparent;
+    border: 2px solid var(--color-morado-oscuro);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+        background-color: var(--color-morado-oscuro);
+        color: var(--color-blanco);
+        transform: translateY(-1px);
+        outline: none;
+    }
+
+    .btn-secondary:disabled,
+    .btn-secondary[disabled] {
+        background-color: #E2E8F0; /* gris claro */
+        color: #A0AEC0; /* gris medio */
+        border-color: #E2E8F0;
+        cursor: not-allowed;
+    }
+
+/* Botón social */
+.btn-social {
+    font-family: var(--font-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0.75rem 1.75rem;
+    min-width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-blanco);
+    background-color: var(--color-negro);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+    .btn-social:hover,
+    .btn-social:focus {
+        background-color: var(--color-morado-oscuro);
+        transform: translateY(-1px);
+        outline: none;
+        color: var(--color-blanco);
+    }
+
+    .btn-social:disabled,
+    .btn-social[disabled] {
+        background-color: #4A5568; /* gris oscuro */
+        color: #E2E8F0; /* gris claro */
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+/* 11) Tablas de resultados */
+#resultadosTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-gris-card);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+    #resultadosTable thead {
+        background-color: var(--color-morado-oscuro);
+    }
+
+        #resultadosTable thead th {
+            color: var(--color-blanco);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+    #resultadosTable tbody tr:nth-child(odd) {
+        background-color: #F9FAFB;
+    }
+
+    #resultadosTable tbody td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--color-gris-oscuro);
+        color: var(--color-negro);
+    }
+
+    #resultadosTable tbody tr:hover {
+        background-color: var(--color-lila-claro);
+        color: var(--color-negro);
+        cursor: pointer;
+    }
+
+/* 12) Acordeón de filtros */
+.accordion .accordion-item {
+    border: 1px solid var(--color-gris-oscuro);
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background-color: var(--color-gris-card);
+}
+
+.accordion-button {
+    background-color: var(--color-gris-card);
+    color: var(--color-morado-oscuro);
+    font-weight: 500;
+}
+
+    .accordion-button:not(.collapsed) {
+        background-color: var(--color-lila-claro);
+        color: var(--color-morado-oscuro);
+    }
+
+    .accordion-button::after {
+        filter: invert(25%) sepia(65%) saturate(500%) hue-rotate(255deg) brightness(88%) contrast(88%);
+    }
+
+.accordion-body {
+    background-color: var(--color-blanco);
+    padding: 1rem;
+}
+
+.form-check-label {
+    color: var(--color-negro);
+}
+
+/* 13) Secciones destacadas (highlight) */
+.section-highlight {
+    background-color: #F3E8FF; /* Lila muy pálido */
+    color: var(--color-negro);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border: 1px solid var(--color-lila);
+}
+
+/* 14) Welcome text (texto de bienvenida) */
+.welcome-text {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.6;
+    color: var(--color-morado-oscuro);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .welcome-text {
+        font-size: 1.0625rem; /* ~17px */
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-text {
+        font-size: 1rem; /* ~16px */
+        padding: 0 0.75rem;
+    }
+}
+
+/* 15) Encabezados y tipografía general */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-morado-oscuro);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* 16) Pie de página */
+footer {
+    background-color: var(--color-morado-oscuro);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+    color: var(--color-blanco);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+    footer a {
+        color: var(--color-lila-claro);
+        text-decoration: underline;
+        transition: color 0.2s ease-in-out;
+    }
+
+        footer a:hover {
+            color: var(--color-blanco);
+        }
+
+/* 17) Imagen de perfil */
+.profile-img {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .profile-img {
+        width: 140px;
+    }
+}
+
+/* 18) Ajustes responsivos */
+@media (max-width: 768px) {
+    .header {
+        text-align: center;
+    }
+
+    .btn,
+    .btn-secondary,
+    .btn-social {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .card,
+    .section {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-img {
+        width: 140px;
+    }
+}

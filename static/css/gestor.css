@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* 2) Variables CSS */
+:root {
+    --color-lila: #805AD5; /* Morado medio (color primario) */
+    --color-lila-claro: #B794F4; /* Lila claro para hover/acentos */
+    --color-morado-oscuro: #553C9A; /* Morado oscuro para títulos/textos importantes */
+    --color-negro: #2D3748; /* Negro muy oscuro (texto general) */
+    --color-blanco: #FFFFFF; /* Blanco puro */
+    --color-gris-fondo: #E5E7EB; /* Gris claro-oscuro para fondo general */
+    --color-gris-card: #FFFFFF; /* Fondo de las cards/section-light */
+    --color-gris-oscuro: #D1D5DB; /* Gris medio para bordes y separadores */
+    --font-principal: 'Poppins', sans-serif;
+}
+
+/* 3) Reset mínimo y tipografía global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: var(--font-principal);
+    background-color: var(--color-gris-fondo);
+    color: var(--color-negro);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+body {
+    background: linear-gradient(135deg, var(--color-gris-fondo) 0%, var(--color-blanco) 100%);
+}
+
+/* 4) Contenedor principal */
+.container {
+    width: 90%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* 5) Cabecera de gestor */
+.header {
+    background-color: var(--color-gris-card);
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--color-lila);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+    .header h1,
+    .header h2,
+    .header h3 {
+        color: var(--color-morado-oscuro);
+        font-weight: 600;
+    }
+
+/* 6) Navegación interna */
+.nav-gestor {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+    .nav-gestor a {
+        font-family: var(--font-principal);
+        font-weight: 500;
+        color: var(--color-morado-oscuro);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+    }
+
+        .nav-gestor a:hover {
+            color: var(--color-lila-claro);
+        }
+
+/* 7) Enlaces generales */
+a {
+    color: var(--color-morado-oscuro);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+    a:hover {
+        color: var(--color-lila-claro);
+    }
+
+/* 8) Botones */
+/* Botón primario */
+.btn {
+    font-family: var(--font-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0.75rem 1.75rem;
+    min-width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-blanco);
+    background: linear-gradient(135deg, var(--color-morado-oscuro) 0%, var(--color-lila) 100%);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+    .btn:hover,
+    .btn:focus {
+        background-color: var(--color-morado-oscuro);
+        color: var(--color-blanco);
+        transform: translateY(-1px);
+        outline: none;
+    }
+
+    .btn:disabled,
+    .btn[disabled] {
+        background-color: #A0AEC0; /* gris medio-oscuro */
+        color: #EDF2F7; /* gris muy claro */
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+/* Botón secundario */
+.btn-secondary {
+    font-family: var(--font-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0.75rem 1.75rem;
+    min-width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-morado-oscuro);
+    background-color: transparent;
+    border: 2px solid var(--color-morado-oscuro);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+        background-color: var(--color-morado-oscuro);
+        color: var(--color-blanco);
+        transform: translateY(-1px);
+        outline: none;
+    }
+
+    .btn-secondary:disabled,
+    .btn-secondary[disabled] {
+        background-color: #E2E8F0; /* gris claro */
+        color: #A0AEC0; /* gris medio */
+        border-color: #E2E8F0;
+        cursor: not-allowed;
+    }
+
+/* Botón social */
+.btn-social {
+    font-family: var(--font-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0.75rem 1.75rem;
+    min-width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-blanco);
+    background-color: var(--color-negro);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+    .btn-social:hover,
+    .btn-social:focus {
+        background-color: var(--color-morado-oscuro);
+        transform: translateY(-1px);
+        outline: none;
+        color: var(--color-blanco);
+    }
+
+    .btn-social:disabled,
+    .btn-social[disabled] {
+        background-color: #4A5568; /* gris oscuro */
+        color: #E2E8F0; /* gris claro */
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+/* 9) Inputs, selects y textarea */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-morado-oscuro);
+    background-color: var(--color-blanco);
+    color: var(--color-negro);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: var(--font-principal);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: var(--color-lila);
+        background-color: var(--color-blanco);
+        box-shadow: 0 0 0 4px rgba(128, 90, 213, 0.15);
+    }
+
+/* 10) Titulares y encabezados */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-morado-oscuro);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* 11) Sección “ligera” */
+.section-light {
+    background-color: var(--color-gris-card);
+    color: var(--color-negro);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border: 1px solid var(--color-morado-oscuro);
+}
+
+/* 12) Footer */
+footer {
+    background-color: var(--color-gris-fondo);
+    padding: 1rem 0;
+    margin-top: 2rem;
+    border-top: 2px solid var(--color-lila);
+    color: var(--color-negro);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+    footer a {
+        color: var(--color-morado-oscuro);
+        text-decoration: underline;
+        transition: color 0.2s ease-in-out;
+    }
+
+        footer a:hover {
+            color: var(--color-lila-claro);
+        }
+
+/* 13) Media Queries para responsivo */
+@media (max-width: 768px) {
+    .header,
+    footer {
+        text-align: center;
+    }
+
+    .btn,
+    .btn-secondary,
+    .btn-social {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .card,
+    .section {
+        padding: 1rem;
+    }
+}
